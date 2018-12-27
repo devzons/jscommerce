@@ -1,19 +1,31 @@
 import Link from 'next/link'
+import Head from 'next/head'
+import Router from 'next/router'
+import NProgress from 'nprogress'
 import {Menu, Container, Image } from 'semantic-ui-react'
 
+Router.onRouteChangeState = url => NProgress.start()
+Router.onRouteChangeComplete = url => NProgress.done()
+Router.onRouteChangeError = url => NProgress.done()
+
 export default () => (
-  <Menu inverted fixed="top" size="huge">
-    <Container text>
-      <Link href="/" prefetch passHref>
-        <Menu.Item as ='a' header>
-          <Image 
-            size="mini"
-            src="/static/moltin.svg"
-            style={{marginRight: '1.5em'}}
-          />
-          JS Commerce
-        </Menu.Item>
-      </Link>
-    </Container>
-  </Menu>
+  <React.Fragment>
+    <Head>
+      <link rel="stylesheet" href="/static/nprogess.css"/>
+    </Head>
+    <Menu inverted fixed="top" size="huge">
+      <Container text>
+        <Link href="/" prefetch passHref>
+          <Menu.Item as ='a' header>
+            <Image 
+              size="mini"
+              src="/static/moltin.svg"
+              style={{marginRight: '1.5em'}}
+            />
+            JS Commerce
+          </Menu.Item>
+        </Link>
+      </Container>
+    </Menu>
+  </React.Fragment>
 )

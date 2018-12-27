@@ -11,7 +11,7 @@ Router.onRouteChangeError = url => NProgress.done()
 export default () => (
   <React.Fragment>
     <Head>
-      <link rel="stylesheet" href="/static/nprogess.css"/>
+      <link rel="stylesheet" type="text/css" href="/static/nprogress.css"/>
     </Head>
     <Menu inverted fixed="top" size="huge">
       <Container text>

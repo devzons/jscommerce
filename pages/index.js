@@ -1,6 +1,12 @@
 import {getProducts} from '../lib/moltin'
+import Layout from '../components/Layout'
+import ProductList from '../components/ProductList'
 
-const Home = ({products}) => <pre>{JSON.stringify(products, '\t', 2)}</pre>
+const Home = (props) => (
+  <Layout title='Home'>
+    <ProductList {...props} />
+  </Layout>
+)
 
 Home.getInitialProps = async () => {
   const products = await getProducts()

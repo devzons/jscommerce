@@ -20,6 +20,7 @@
     "@moltin/sdk": "3.16.0",
     "next": "7.0.2",
     "react": "16.7.0",
-    "react-dom": "16.7.0"
+    "react-dom": "16.7.0",
+    "semantic-ui-react": "0.84.0"
   }
 }

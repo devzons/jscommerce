@@ -26,6 +26,18 @@ export default () => (
           </Menu.Item>
         </Link>
 
+        <Link href="/register" prefetch passHref>
+          <Menu.Item  as ='a' header>
+            Sign up
+          </Menu.Item>
+        </Link>
+
+        <Link href="/login" prefetch passHref>
+          <Menu.Item  as ='a' header>
+            Sign in
+          </Menu.Item>
+        </Link>
+
         <Link href="/cart" prefetch passHref>
           <Menu.Item position='right' as ='a' header>
             Cart

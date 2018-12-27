@@ -2,12 +2,13 @@ import Layout from '../components/Layout'
 import CartItemList from '../components/CartItemList'
 import CartSummary from '../components/CartSummary'
 
-import {getCartItems, removeFromCart} from '../lib/moltin'
+import {getCartItems, removeFromCart, checkoutCart, payForOrder} from '../lib/moltin'
 
 export default class Cart extends React.Component {
   state = {
     items: [],
-    loading: true
+    loading: true,
+    completed: false
   }
 
   async componentDidMount() {
@@ -21,6 +22,46 @@ export default class Cart extends React.Component {
       loading: false
     })
   }
+
+  _handleCheckout = async data => {
+    const cartId = await localStorage.getItem('mcart')
+
+    const {id: token, email, card: {
+      name,
+      address_line1: line_1,
+      address_city: city,
+      address_country: country,
+      address_state: state,
+      address_zip: postcode
+    }}  = data
+
+    const customer = {
+      name,
+      email
+    }
+  
+    const address = {
+      first_name: name.split(' ')[0],
+      last_name: name.split(' ')[1],
+      line_1,
+      city,
+      country,
+      state,
+      postcode
+    }
+
+    try{
+      const {data: {id}} = await checkoutCart(cartId, customer, address)
+
+      await payForOrder(id, token, email)
+
+      this.setState({
+        completed: true
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  } 
 
   _handleRemoveFromCart = async itemId => {
     const {cartId} = this.state
@@ -39,7 +80,9 @@ export default class Cart extends React.Component {
     return (
       <Layout title='Cart'>
         <CartItemList {...rest} removeFromCart={this._handleRemoveFromCart} />
-        {!loading && <CartSummary {...meta} /> }
+        {!loading && !rest.completed && (
+          <CartSummary {...meta} handleCheckout={this._handleCheckout} /> 
+        )}
       </Layout>
     ) 
   }

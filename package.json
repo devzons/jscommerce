@@ -1,0 +1,25 @@
+{
+  "name": "jscommerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": "git+https://github.com/devzons/jscommerce.git",
+  "author": "devzons <devzons@gmaill.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devzons/jscommerce/issues"
+  },
+  "homepage": "https://github.com/devzons/jscommerce#readme",
+  "dependencies": {
+    "@moltin/sdk": "3.16.0",
+    "next": "7.0.2",
+    "react": "16.7.0",
+    "react-dom": "16.7.0"
+  }
+}
